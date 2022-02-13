@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @ServletComponentScan
  * 使用@ServletComponentScan注解后，Servlet、Filter、Listener可以直接通过@WebServlet、@WebFilter、@WebListener注解自动注册，无需其他代码。
  * 换一种方式的话，就等于@ComponentScan + @Component
+ *
+ * 看OneFilter注解
  */
 @ServletComponentScan
 //@ComponentScan
