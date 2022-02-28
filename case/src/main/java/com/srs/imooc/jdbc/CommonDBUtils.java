@@ -64,7 +64,7 @@ public class CommonDBUtils {
         //1、加载属性文件
         String path = CommonDBUtils.class.getResource("/druid-config.properties")
                 .getPath();
-//        String path = CommonDBUtils.class.getResource("/druid-config.properties").getPath();
+//        String path = CommonDBUtils.class.getResource("/druid-i18n-config.properties").getPath();
         Properties properties = new Properties();
         try {
             path = URLDecoder.decode(path, "UTF-8");
