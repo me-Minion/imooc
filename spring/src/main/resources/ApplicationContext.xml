@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="studentDAO" class="com.srs.spring.dao.StudentDAO"/>
+    <bean id="classDAO" class="com.srs.spring.dao.ClassDAO"/>
+
+    <bean id="studentService" class="com.srs.spring.service.StudentService">
+        <property name="studentDAO" ref="studentDAO"/>
+    </bean>
+
+    <bean id="classService" class="com.srs.spring.service.ClassService">
+        <property name="classDAO" ref="classDAO"/>
+    </bean>
+
+</beans>

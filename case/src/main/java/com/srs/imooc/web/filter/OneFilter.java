@@ -48,7 +48,7 @@ import java.io.IOException;
  *
  */
 //@Component
-@WebFilter(filterName = "OneFilter",urlPatterns = "/filter/hi/*",
+@WebFilter(filterName = "OneFilter",urlPatterns = "/*",
         initParams = {@WebInitParam(name = "encoding", value = "GBK")})
 public class OneFilter implements Filter {
 
@@ -74,6 +74,8 @@ public class OneFilter implements Filter {
 
         //过滤链
         filterChain.doFilter(servletRequest, servletResponse);
+        Object srs = httpServletRequest.getAttribute("srs");
+        System.out.println(srs);
     }
 
     @Override
