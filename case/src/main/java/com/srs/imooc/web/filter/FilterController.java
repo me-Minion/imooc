@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * 看OneFilter注解
  */
-@ServletComponentScan
+//@ServletComponentScan
 //@ComponentScan
 @RestController
 public class FilterController {
