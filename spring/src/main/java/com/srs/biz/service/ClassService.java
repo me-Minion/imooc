@@ -1,13 +1,17 @@
-package com.srs.spring.service;
+package com.srs.biz.service;
 
-import com.srs.spring.dao.ClassDAO;
+import com.srs.biz.dao.ClassDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author shaorensheng
  * @date 2022/3/16
  */
+@Repository
 public class ClassService {
 
+    @Autowired
     private ClassDAO classDAO;
 
     public ClassService() {

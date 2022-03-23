@@ -1,4 +1,4 @@
-package com.srs.spring.entity;
+package com.srs.biz.entity;
 
 /**
  * @author shaorensheng

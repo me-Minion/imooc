@@ -1,17 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <bean id="studentDAO" class="com.srs.spring.dao.StudentDAO"/>
-    <bean id="classDAO" class="com.srs.spring.dao.ClassDAO"/>
+    <bean id="studentDAO" class="com.srs.biz.dao.StudentDAO"/>
+    <bean id="classDAO" class="com.srs.biz.dao.ClassDAO"/>
 
-    <bean id="studentService" class="com.srs.spring.service.StudentService">
+    <bean id="studentService" class="com.srs.biz.service.StudentService">
         <property name="studentDAO" ref="studentDAO"/>
     </bean>
 
-    <bean id="classService" class="com.srs.spring.service.ClassService">
+    <bean id="classService" class="com.srs.biz.service.ClassService">
         <property name="classDAO" ref="classDAO"/>
     </bean>
+
+    <!-- befor\after切面打印 加入ioc容器 -->
+    <bean id="printExcutionTime" class="com.srs.spring.aspect.PrintExcutionTime"/>
+    <!-- around切面打印 加入ioc容器 -->
+    <bean id="aroundPrintExcutionTime" class="com.srs.spring.aspect.AroundPrintExcutionTime"/>
+<!--    <aop:config proxy-target-class="true">-->
+<!--        <aop:pointcut id="printTime" expression="execution(* com.srs.spring..*.*(..))"/>-->
+<!--        <aop:aspect ref="printExcutionTime">-->
+<!--            &lt;!&ndash; 方法执行前调用 &ndash;&gt;-->
+<!--&lt;!&ndash;            <aop:before method="printTime" pointcut-ref="printTime"/>&ndash;&gt;-->
+<!--            &lt;!&ndash; 方法执行后调用 相当于try catch finally中的finally &ndash;&gt;-->
+<!--&lt;!&ndash;            <aop:after method="printTime" pointcut-ref="printTime"/>&ndash;&gt;-->
+<!--            &lt;!&ndash;方法return后调用 &ndash;&gt;-->
+<!--&lt;!&ndash;            <aop:after-returning method="afterPrintTime" returning="ret" pointcut-ref="printTime"/>&ndash;&gt;-->
+<!--            &lt;!&ndash; 方法抛出异常后调用(是方法抛出异常才会执行)&ndash;&gt;-->
+<!--&lt;!&ndash;            <aop:after-throwing method="afterPrintTimeThrowing" throwing="ret" pointcut-ref="printTime"/>&ndash;&gt;-->
+<!--        </aop:aspect>-->
+<!--    </aop:config>-->
+
+    <!-- around通知 -->
+    <aop:config proxy-target-class="true">
+        <aop:pointcut id="aroundPrintTime" expression="execution(* com.srs..*.*(..))"/>
+        <aop:aspect ref="aroundPrintExcutionTime" >
+            <aop:around method="printTime" pointcut-ref="aroundPrintTime"/>
+        </aop:aspect>
+    </aop:config>
 
 </beans>
